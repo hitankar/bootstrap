@@ -1,8 +1,10 @@
+@use "../mixins/screen-reader";
+
 //
 // Screenreaders
 //
 
 .sr-only,
 .sr-only-focusable:not(:focus) {
-  @include sr-only();
+  @include screen-reader.sr-only();
 }

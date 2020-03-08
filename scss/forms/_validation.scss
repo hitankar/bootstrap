@@ -1,3 +1,7 @@
+@use "sass:map";
+@use "../mixins/forms";
+@use "../variables";
+
 // Form validation
 //
 // Provide feedback to users when form field values are valid or invalid. Works
@@ -5,6 +9,6 @@
 // pseudo-classes but also includes `.is-invalid` and `.is-valid` classes for
 // server-side validation.
 
-@each $state, $data in $form-validation-states {
-  @include form-validation-state($state, map-get($data, color), map-get($data, icon));
+@each $state, $data in variables.$form-validation-states {
+  @include forms.form-validation-state($state, map.get($data, color), map.get($data, icon));
 }

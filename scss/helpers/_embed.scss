@@ -1,3 +1,7 @@
+@use "sass:map";
+@use "sass:math";
+@use "../variables";
+
 // Credit: Nicolas Gallagher and SUIT CSS.
 
 .embed-responsive {
@@ -23,10 +27,10 @@
   }
 }
 
-@each $key, $ratio in $embed-responsive-aspect-ratios {
+@each $key, $ratio in variables.$embed-responsive-aspect-ratios {
   .embed-responsive-#{$key} {
     &::before {
-      padding-top: percentage(map-get($ratio, y) / map-get($ratio, x));
+      padding-top: math.percentage(map.get($ratio, y) / map.get($ratio, x));
     }
   }
 }

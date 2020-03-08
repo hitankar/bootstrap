@@ -1,8 +1,13 @@
+@use "../mixins/border-radius";
+@use "../mixins/box-shadow";
+@use "../mixins/gradients";
+@use "../variables";
+
 .form-file {
   position: relative;
   display: inline-block;
   width: 100%;
-  height: $form-file-height;
+  height: variables.$form-file-height;
   margin-bottom: 0;
 }
 
@@ -10,28 +15,28 @@
   position: relative;
   z-index: 2;
   width: 100%;
-  height: $form-file-height;
+  height: variables.$form-file-height;
   margin: 0;
   opacity: 0;
 
   // Separate rules for :focus and :focus-within as IE doesn't support the latter, and
   // thus ignores the entire ruleset. See https://github.com/twbs/bootstrap/pull/29036.
   &:focus ~ .form-file-label {
-    border-color: $form-file-focus-border-color;
-    box-shadow: $form-file-focus-box-shadow;
+    border-color: variables.$form-file-focus-border-color;
+    box-shadow: variables.$form-file-focus-box-shadow;
   }
 
   &:focus-within ~ .form-file-label {
-    border-color: $form-file-focus-border-color;
-    box-shadow: $form-file-focus-box-shadow;
+    border-color: variables.$form-file-focus-border-color;
+    box-shadow: variables.$form-file-focus-box-shadow;
   }
 
   // Use disabled attribute in addition of :disabled pseudo-class
   // See: https://github.com/twbs/bootstrap/issues/28247
   &[disabled] ~ .form-file-label .form-file-text,
   &:disabled ~ .form-file-label .form-file-text {
-    background-color: $form-file-disabled-bg;
-    border-color: $form-file-disabled-border-color;
+    background-color: variables.$form-file-disabled-bg;
+    border-color: variables.$form-file-disabled-border-color;
   }
 }
 
@@ -42,40 +47,40 @@
   left: 0;
   z-index: 1;
   display: flex;
-  height: $form-file-height;
-  border-color: $form-file-border-color;
-  @include border-radius($form-file-border-radius);
-  @include box-shadow($form-file-box-shadow);
+  height: variables.$form-file-height;
+  border-color: variables.$form-file-border-color;
+  @include border-radius.border-radius(variables.$form-file-border-radius);
+  @include box-shadow.box-shadow(variables.$form-file-box-shadow);
 }
 
 .form-file-text {
   display: block;
   flex-grow: 1;
-  padding: $form-file-padding-y $form-file-padding-x;
+  padding: variables.$form-file-padding-y variables.$form-file-padding-x;
   overflow: hidden;
-  font-family: $form-file-font-family;
-  font-weight: $form-file-font-weight;
-  line-height: $form-file-line-height;
-  color: $form-file-color;
+  font-family: variables.$form-file-font-family;
+  font-weight: variables.$form-file-font-weight;
+  line-height: variables.$form-file-line-height;
+  color: variables.$form-file-color;
   text-overflow: ellipsis;
   white-space: nowrap;
-  background-color: $form-file-bg;
+  background-color: variables.$form-file-bg;
   border-color: inherit;
   border-style: solid;
-  border-width: $form-file-border-width;
-  @include border-left-radius(inherit);
+  border-width: variables.$form-file-border-width;
+  @include border-radius.border-left-radius(inherit);
 }
 
 .form-file-button {
   display: block;
   flex-shrink: 0;
-  padding: $form-file-padding-y $form-file-padding-x;
-  margin-left: -$form-file-border-width;
-  line-height: $form-file-line-height;
-  color: $form-file-button-color;
-  @include gradient-bg($form-file-button-bg);
+  padding: variables.$form-file-padding-y variables.$form-file-padding-x;
+  margin-left: -(variables.$form-file-border-width);
+  line-height: variables.$form-file-line-height;
+  color: variables.$form-file-button-color;
+  @include gradients.gradient-bg(variables.$form-file-button-bg);
   border-color: inherit;
   border-style: solid;
-  border-width: $form-file-border-width;
-  @include border-right-radius(inherit);
+  border-width: variables.$form-file-border-width;
+  @include border-radius.border-right-radius(inherit);
 }

@@ -1,3 +1,7 @@
+@use "mixins/border-radius";
+@use "variables";
+@use "vendor/rfs";
+
 // stylelint-disable at-rule-no-vendor-prefix, declaration-no-important, selector-no-qualifying-type, property-no-vendor-prefix
 
 
@@ -26,7 +30,7 @@
 // null by default, thus nothing is generated.
 
 :root {
-  font-size: $font-size-root;
+  font-size: variables.$font-size-root;
 }
 
 
@@ -39,15 +43,15 @@
 
 body {
   margin: 0; // 1
-  font-family: $font-family-base;
-  @include font-size($font-size-base);
-  font-weight: $font-weight-base;
-  line-height: $line-height-base;
-  color: $body-color;
-  text-align: $body-text-align;
-  background-color: $body-bg; // 2
+  font-family: variables.$font-family-base;
+  @include rfs.font-size(variables.$font-size-base);
+  font-weight: variables.$font-weight-base;
+  line-height: variables.$line-height-base;
+  color: variables.$body-color;
+  text-align: variables.$body-text-align;
+  background-color: variables.$body-bg; // 2
   -webkit-text-size-adjust: 100%; // 3
-  -webkit-tap-highlight-color: rgba($black, 0); // 4
+  -webkit-tap-highlight-color: rgba(variables.$black, 0); // 4
 }
 
 
@@ -72,15 +76,15 @@ body {
 //    See https://www.w3schools.com/tags/tryit.asp?filename=tryhtml_hr_size
 
 hr {
-  margin: $hr-margin-y 0;
-  color: $hr-color; // 1
+  margin: variables.$hr-margin-y 0;
+  color: variables.$hr-color; // 1
   background-color: currentColor;
   border: 0;
-  opacity: $hr-opacity;
+  opacity: variables.$hr-opacity;
 }
 
 hr:not([size]) {
-  height: $hr-height; // 2
+  height: variables.$hr-height; // 2
 }
 
 
@@ -92,42 +96,42 @@ hr:not([size]) {
 
 %heading {
   margin-top: 0; // 1
-  margin-bottom: $headings-margin-bottom;
-  font-family: $headings-font-family;
-  font-style: $headings-font-style;
-  font-weight: $headings-font-weight;
-  line-height: $headings-line-height;
-  color: $headings-color;
+  margin-bottom: variables.$headings-margin-bottom;
+  font-family: variables.$headings-font-family;
+  font-style: variables.$headings-font-style;
+  font-weight: variables.$headings-font-weight;
+  line-height: variables.$headings-line-height;
+  color: variables.$headings-color;
 }
 
 h1 {
   @extend %heading;
-  @include font-size($h1-font-size);
+  @include rfs.font-size(variables.$h1-font-size);
 }
 
 h2 {
   @extend %heading;
-  @include font-size($h2-font-size);
+  @include rfs.font-size(variables.$h2-font-size);
 }
 
 h3 {
   @extend %heading;
-  @include font-size($h3-font-size);
+  @include rfs.font-size(variables.$h3-font-size);
 }
 
 h4 {
   @extend %heading;
-  @include font-size($h4-font-size);
+  @include rfs.font-size(variables.$h4-font-size);
 }
 
 h5 {
   @extend %heading;
-  @include font-size($h5-font-size);
+  @include rfs.font-size(variables.$h5-font-size);
 }
 
 h6 {
   @extend %heading;
-  @include font-size($h6-font-size);
+  @include rfs.font-size(variables.$h6-font-size);
 }
 
 
@@ -138,7 +142,7 @@ h6 {
 
 p {
   margin-top: 0;
-  margin-bottom: $paragraph-margin-bottom;
+  margin-bottom: variables.$paragraph-margin-bottom;
 }
 
 
@@ -189,7 +193,7 @@ ul ol {
 }
 
 dt {
-  font-weight: $dt-font-weight;
+  font-weight: variables.$dt-font-weight;
 }
 
 // 1. Undo browser default
@@ -213,7 +217,7 @@ blockquote {
 
 b,
 strong {
-  font-weight: $font-weight-bolder;
+  font-weight: variables.$font-weight-bolder;
 }
 
 
@@ -222,15 +226,15 @@ strong {
 // Add the correct font size in all browsers
 
 small {
-  @include font-size($small-font-size);
+  @include rfs.font-size(variables.$small-font-size);
 }
 
 
 // Mark
 
 mark {
-  padding: $mark-padding;
-  background-color: $mark-bg;
+  padding: variables.$mark-padding;
+  background-color: variables.$mark-bg;
 }
 
 
@@ -242,7 +246,7 @@ mark {
 sub,
 sup {
   position: relative;
-  @include font-size($sub-sup-font-size);
+  @include rfs.font-size(variables.$sub-sup-font-size);
   line-height: 0;
   vertical-align: baseline;
 }
@@ -254,12 +258,12 @@ sup { top: -.5em; }
 // Links
 
 a {
-  color: $link-color;
-  text-decoration: $link-decoration;
+  color: variables.$link-color;
+  text-decoration: variables.$link-decoration;
 
   &:hover {
-    color: $link-hover-color;
-    text-decoration: $link-hover-decoration;
+    color: variables.$link-hover-color;
+    text-decoration: variables.$link-hover-decoration;
   }
 }
 
@@ -283,8 +287,8 @@ pre,
 code,
 kbd,
 samp {
-  font-family: $font-family-monospace;
-  @include font-size(1em); // Correct the odd `em` font sizing in all browsers.
+  font-family: variables.$font-family-monospace;
+  @include rfs.font-size(1em); // Correct the odd `em` font sizing in all browsers.
 }
 
 // 1. Remove browser default top margin
@@ -296,20 +300,20 @@ pre {
   margin-top: 0; // 1
   margin-bottom: 1rem; // 2
   overflow: auto; // 3
-  @include font-size($code-font-size);
-  color: $pre-color;
+  @include rfs.font-size(variables.$code-font-size);
+  color: variables.$pre-color;
 
   // Account for some code outputs that place code tags in pre tags
   code {
-    @include font-size(inherit);
+    @include rfs.font-size(inherit);
     color: inherit;
     word-break: normal;
   }
 }
 
 code {
-  @include font-size($code-font-size);
-  color: $code-color;
+  @include rfs.font-size(variables.$code-font-size);
+  color: variables.$code-color;
   word-wrap: break-word;
 
   // Streamline the style when inside anchors to avoid broken underline and more
@@ -319,16 +323,16 @@ code {
 }
 
 kbd {
-  padding: $kbd-padding-y $kbd-padding-x;
-  @include font-size($kbd-font-size);
-  color: $kbd-color;
-  background-color: $kbd-bg;
-  @include border-radius($border-radius-sm);
+  padding: variables.$kbd-padding-y variables.$kbd-padding-x;
+  @include rfs.font-size(variables.$kbd-font-size);
+  color: variables.$kbd-color;
+  background-color: variables.$kbd-bg;
+  @include border-radius.border-radius(variables.$border-radius-sm);
 
   kbd {
     padding: 0;
-    @include font-size(1em);
-    font-weight: $nested-kbd-font-weight;
+    @include rfs.font-size(1em);
+    font-weight: variables.$nested-kbd-font-weight;
   }
 }
 
@@ -366,9 +370,9 @@ table {
 }
 
 caption {
-  padding-top: $table-cell-padding;
-  padding-bottom: $table-cell-padding;
-  color: $table-caption-color;
+  padding-top: variables.$table-cell-padding;
+  padding-bottom: variables.$table-cell-padding;
+  color: variables.$table-caption-color;
   text-align: left;
   caption-side: bottom;
 }
@@ -388,7 +392,7 @@ th {
 
 label {
   display: inline-block; // 1
-  margin-bottom: $label-margin-bottom;
+  margin-bottom: variables.$label-margin-bottom;
 }
 
 // Remove the default `border-radius` that macOS Chrome adds.
@@ -417,7 +421,7 @@ optgroup,
 textarea {
   margin: 0; // 1
   font-family: inherit;
-  @include font-size(inherit);
+  @include rfs.font-size(inherit);
   line-height: inherit;
 }
 
@@ -460,7 +464,7 @@ button,
 [type="submit"] {
   -webkit-appearance: button; // 2
 
-  @if $enable-pointer-cursor-for-buttons {
+  @if variables.$enable-pointer-cursor-for-buttons {
     &:not(:disabled) {
       cursor: pointer; // 3
     }
@@ -517,9 +521,9 @@ legend {
   float: left; // 1
   width: 100%;
   padding: 0;
-  margin-bottom: $legend-margin-bottom;
-  @include font-size($legend-font-size);
-  font-weight: $legend-font-weight;
+  margin-bottom: variables.$legend-margin-bottom;
+  @include rfs.font-size(variables.$legend-font-size);
+  font-weight: variables.$legend-font-weight;
   line-height: inherit;
   color: inherit; // 2
   white-space: normal; // 3

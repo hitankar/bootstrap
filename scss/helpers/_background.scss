@@ -1,5 +1,8 @@
-@if $enable-gradients {
-  @each $color, $value in $theme-colors {
-    @include bg-gradient-variant(".bg-gradient-#{$color}", $value);
+@use "../mixins/background-variant";
+@use "../variables";
+
+@if variables.$enable-gradients {
+  @each $color, $value in variables.$theme-colors {
+    @include background-variant.bg-gradient-variant(".bg-gradient-#{$color}", $value);
   }
 }

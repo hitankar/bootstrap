@@ -1,10 +1,13 @@
+@use "mixins/grid";
+@use "variables";
+
 // Row
 //
 // Rows contain your columns.
 
-@if $enable-grid-classes {
+@if variables.$enable-grid-classes {
   .row {
-    @include make-row();
+    @include grid.make-row();
   }
 
   // Remove the negative margin from default .row, then the horizontal padding
@@ -25,6 +28,6 @@
 //
 // Common styles for small and large grid columns
 
-@if $enable-grid-classes {
-  @include make-grid-columns();
+@if variables.$enable-grid-classes {
+  @include grid.make-grid-columns();
 }

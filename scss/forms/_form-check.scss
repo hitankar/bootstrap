@@ -1,85 +1,90 @@
+@use "sass:color";
+@use "../functions";
+@use "../mixins/border-radius";
+@use "../variables";
+
 //
 // Check/radio
 //
 
 .form-check {
   display: block;
-  min-height: $form-check-min-height;
-  padding-left: $form-check-padding-left;
-  margin-bottom: $form-check-margin-bottom;
+  min-height: variables.$form-check-min-height;
+  padding-left: variables.$form-check-padding-left;
+  margin-bottom: variables.$form-check-margin-bottom;
 
   .form-check-input {
     float: left;
-    margin-left: $form-check-padding-left * -1;
+    margin-left: variables.$form-check-padding-left * -1;
   }
 }
 
 .form-check-input {
-  width: $form-check-input-width;
-  height: $form-check-input-width;
-  margin-top: ($line-height-base - $form-check-input-width) / 2; // line-height minus check height
+  width: variables.$form-check-input-width;
+  height: variables.$form-check-input-width;
+  margin-top: (variables.$line-height-base - variables.$form-check-input-width) / 2; // line-height minus check height
   vertical-align: top;
-  background-color: $form-check-input-bg;
-  border: $form-check-input-border;
+  background-color: variables.$form-check-input-bg;
+  border: variables.$form-check-input-border;
   appearance: none;
   color-adjust: exact; // Keep themed appearance for print
 
   &[type="checkbox"] {
-    @include border-radius($form-check-input-border-radius);
+    @include border-radius.border-radius(variables.$form-check-input-border-radius);
   }
 
   &[type="radio"] {
-    @include border-radius($form-check-radio-border-radius);
+    @include border-radius.border-radius(variables.$form-check-radio-border-radius);
   }
 
   &:active {
-    filter: $form-check-input-active-filter;
+    filter: variables.$form-check-input-active-filter;
   }
 
   &:focus {
-    border-color: $form-check-input-focus-border;
+    border-color: variables.$form-check-input-focus-border;
     outline: 0;
-    box-shadow: $form-check-input-focus-box-shadow;
+    box-shadow: variables.$form-check-input-focus-box-shadow;
   }
 
   &:checked {
-    background-color: $form-check-input-checked-bg-color;
-    background-repeat: $form-check-input-checked-bg-repeat;
-    background-position: $form-check-input-checked-bg-position;
-    background-size: $form-check-input-checked-bg-size;
-    border-color: $form-check-input-checked-border-color;
+    background-color: variables.$form-check-input-checked-bg-color;
+    background-repeat: variables.$form-check-input-checked-bg-repeat;
+    background-position: variables.$form-check-input-checked-bg-position;
+    background-size: variables.$form-check-input-checked-bg-size;
+    border-color: variables.$form-check-input-checked-border-color;
 
     &[type="checkbox"] {
-      @if $enable-gradients {
-        background-image: escape-svg($form-check-input-checked-bg-image), linear-gradient(180deg, lighten($form-check-input-checked-bg-color, 10%), $form-check-input-checked-bg-color);
-        background-size: $form-check-input-checked-bg-size, auto;
+      @if variables.$enable-gradients {
+        background-image: functions.escape-svg(variables.$form-check-input-checked-bg-image), linear-gradient(180deg, color.adjust(variables.$form-check-input-checked-bg-color, $lightness: 10%), variables.$form-check-input-checked-bg-color);
+        background-size: variables.$form-check-input-checked-bg-size, auto;
       } @else {
-        background-image: escape-svg($form-check-input-checked-bg-image);
+        background-image: functions.escape-svg(variables.$form-check-input-checked-bg-image);
       }
     }
 
     &[type="radio"] {
-      @if $enable-gradients {
-        background-image: escape-svg($form-check-radio-checked-bg-image), linear-gradient(180deg, lighten($form-check-input-checked-bg-color, 10%), $form-check-input-checked-bg-color);
-        background-size: $form-check-input-checked-bg-size, auto;
+      @if variables.$enable-gradients {
+        background-image: functions.escape-svg(variables.$form-check-radio-checked-bg-image), linear-gradient(180deg, color.adjust(variables.$form-check-input-checked-bg-color, $lightness: 10%), variables.$form-check-input-checked-bg-color);
+        background-size: variables.$form-check-input-checked-bg-size, auto;
       } @else {
-        background-image: escape-svg($form-check-radio-checked-bg-image);
+        background-image: functions.escape-svg(variables.$form-check-radio-checked-bg-image);
       }
     }
   }
 
   &[type="checkbox"]:indeterminate {
-    background-color: $form-check-input-indeterminate-bg-color;
-    background-repeat: $form-check-input-indeterminate-bg-repeat;
-    background-position: $form-check-input-indeterminate-bg-position;
-    @if $enable-gradients {
-      background-image: escape-svg($form-check-input-indeterminate-bg-image), linear-gradient(180deg, lighten($form-check-input-checked-bg-color, 10%), $form-check-input-checked-bg-color);
-      background-size: $form-check-input-checked-bg-size, auto;
+    background-color: variables.$form-check-input-indeterminate-bg-color;
+    background-repeat: variables.$form-check-input-indeterminate-bg-repeat;
+    background-position: variables.$form-check-input-indeterminate-bg-position;
+    @if variables.$enable-gradients {
+      background-image: functions.escape-svg(variables.$form-check-input-indeterminate-bg-image), linear-gradient(180deg, color.adjust(variables.$form-check-input-checked-bg-color, $lightness: 10%), variables.$form-check-input-checked-bg-color);
+      background-size: variables.$form-check-input-checked-bg-size, auto;
     } @else {
-      background-image: escape-svg($form-check-input-indeterminate-bg-image);
-      background-size: $form-check-input-indeterminate-bg-size;
+      background-image: functions.escape-svg(variables.$form-check-input-indeterminate-bg-image);
+      background-size: variables.$form-check-input-indeterminate-bg-size;
     }
-    border-color: $form-check-input-indeterminate-border-color;
+    border-color: variables.$form-check-input-indeterminate-border-color;
   }
 
   &:disabled {
@@ -100,7 +105,7 @@
 
 .form-check-label {
   margin-bottom: 0;
-  cursor: $form-check-label-cursor;
+  cursor: variables.$form-check-label-cursor;
 }
 
 //
@@ -108,33 +113,33 @@
 //
 
 .form-switch {
-  padding-left: $form-switch-padding-left;
+  padding-left: variables.$form-switch-padding-left;
 
   .form-check-input {
-    width: $form-switch-width;
-    margin-left: $form-switch-padding-left * -1;
-    background-image: escape-svg($form-switch-bg-image);
+    width: variables.$form-switch-width;
+    margin-left: variables.$form-switch-padding-left * -1;
+    background-image: functions.escape-svg(variables.$form-switch-bg-image);
     background-repeat: no-repeat;
     background-position: left center;
-    background-size: $form-switch-bg-size; // Get a 1px separation
-    @include border-radius($form-switch-border-radius);
+    background-size: variables.$form-switch-bg-size; // Get a 1px separation
+    @include border-radius.border-radius(variables.$form-switch-border-radius);
     color-adjust: exact; // Keep themed appearance for print
     // Todo: Figure out how to tackle these, with or without mixin?
     // transition: $form-switch-transition;
     // transition-property: $form-switch-transition-property;
 
     &:focus {
-      background-image: escape-svg($form-switch-focus-bg-image);
+      background-image: functions.escape-svg(variables.$form-switch-focus-bg-image);
     }
 
     &:checked {
-      background-position: $form-switch-checked-bg-position;
+      background-position: variables.$form-switch-checked-bg-position;
 
-      @if $enable-gradients {
-        background-image: escape-svg($form-switch-checked-bg-image), linear-gradient(180deg, $form-check-input-checked-bg-color, lighten($form-check-input-checked-bg-color, 10%));
-        background-size: $form-switch-bg-size, auto;
+      @if variables.$enable-gradients {
+        background-image: functions.escape-svg(variables.$form-switch-checked-bg-image), linear-gradient(180deg, variables.$form-check-input-checked-bg-color, color.adjust(variables.$form-check-input-checked-bg-color, $lightness: 10%));
+        background-size: variables.$form-switch-bg-size, auto;
       } @else {
-        background-image: escape-svg($form-switch-checked-bg-image);
+        background-image: functions.escape-svg(variables.$form-switch-checked-bg-image);
       }
     }
   }
@@ -142,5 +147,5 @@
 
 .form-check-inline {
   display: inline-block;
-  margin-right: $form-check-inline-margin-right;
+  margin-right: variables.$form-check-inline-margin-right;
 }
